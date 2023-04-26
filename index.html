@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="modal" class="modal is-active">
+    <!-- <div id="modal" class="modal is-active">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head has-background-success has-text-centered">
@@ -25,7 +25,7 @@
                 </p>
             </section>
         </div>
-    </div>
+    </div> -->
 
     <header class="box is-rounded has-background-success py-2">
         <div class="title is-size-1 has-text-centered has-text-dark has-background-success" div>
@@ -34,13 +34,40 @@
     <section>
         <div class="field box py-2 has-text-centered">
             <div class="control">
-                <input class="input has-text-centered" type="text" placeholder="Search a Coin">
+                <input id="searchbar" class="input has-text-centered mt-2" type="text" placeholder="Search a Coin">
             </div>
             <div class="control">
                 <a class="button is-info has-background-success has-text-centered mt-2">
                     Search
                 </a>
             </div>
+            <section class="coinbuttons">
+                <div class="control">
+                    <a id="bitcoinbtn" class="button is-info has-background-success has-text-centered mt-2">
+                        Bitcoin
+                    </a>
+                </div>
+                <div class="control">
+                    <a id="ethereumbtn" class="button is-info has-background-success has-text-centered mt-2">
+                        Ethereum
+                    </a>
+                </div>
+                <div class="control">
+                    <a id="tetherbtn" class="button is-info has-background-success has-text-centered mt-2">
+                        Tether
+                    </a>
+                </div>
+                <div class="control">
+                    <a id="binancebtn" class="button is-info has-background-success has-text-centered mt-2">
+                        Binance
+                    </a>
+                </div>
+                <div class="control">
+                    <a id="dogebtn" class="button is-info has-background-success has-text-centered mt-2">
+                        Dogecoin
+                    </a>
+                </div>
+            </section>
     </section>
     <div id="coin-Data-Gif" class="box is-rounded has-background-success">
         <section>

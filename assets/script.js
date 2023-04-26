@@ -202,10 +202,36 @@ searchButton.addEventListener("click", function (event) {
 
 });
 
-// this event listener is to close the opening modal when hitting the "x" in the top right corner.
-var modalXButton = document.querySelector("#modal-x-button");
-var modal = document.querySelector("#modal");
-modalXButton.addEventListener("click", function (event) {
+let coinBtns = document.querySelector('.coinbuttons');
+
+let bitcoinBtn = document.querySelector("#bitcoinbtn");
+let ethereumBtn = document.querySelector("#ethereumbtn");
+let tetherBtn = document.querySelector("#tetherbtn");
+let binanceBtn = document.querySelector("#binancebtn");
+let dogeBtn = document.querySelector("#dogebtn");
+
+coinBtns.addEventListener("click", function (event) {
     event.preventDefault();
-    modal.classList.remove("is-active");
+    if (event.target === bitcoinBtn) {
+        coinName = 'Bitcoin';
+    } else if (event.target === ethereumBtn) {
+        coinName = 'Ethereum';
+    } else if (event.target === tetherBtn) {
+        coinName = 'Tether USD';
+    } else if (event.target === binanceBtn) {
+        coinName = 'Binance USD';
+    } else if (event.target === dogeBtn) {
+        coinName = 'Dogecoin';
+    }
+    clearPageResults()
+    getUUID();
 });
+
+
+// this event listener is to close the opening modal when hitting the "x" in the top right corner.
+// var modalXButton = document.querySelector("#modal-x-button");
+// var modal = document.querySelector("#modal");
+// modalXButton.addEventListener("click", function (event) {
+//     event.preventDefault();
+//     modal.classList.remove("is-active");
+// });

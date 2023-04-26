@@ -4,6 +4,11 @@
 }
 
 @media screen and (min-width: 901px) {
+
+    #searchbar {
+        max-width: 20%;
+    }
+
     #icon {
         display: flex;
         width: 33%;
