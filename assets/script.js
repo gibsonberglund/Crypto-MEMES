@@ -1,21 +1,19 @@
-var coinValue = document.querySelector("#coin-value");
+var coinCard = document.querySelector("#coin-card");
 var gif1 = document.querySelector("#gif1");
 var gif2 = document.querySelector("#gif2");
 
 // Function for displaying price results
 function printPriceResults(priceObj) {
-    console.log(priceObj);
 
     // set up `<div>` to hold result content
     var priceBody = document.createElement('div');
     priceBody.setAttribute('id', 'price-body');
 
     var titleEl = document.createElement('h3');
-    titleEl.textContent = 'Name: ' + priceObj.data.coin.name;
+    titleEl.textContent = priceObj.data.coin.name + priceObj.data.coin.symbol;
 
     var bodyContentEl = document.createElement('div');
     bodyContentEl.innerHTML =
-        'Symbol: ' + priceObj.data.coin.symbol + '<br>' +
         'Price: ' + priceObj.data.coin.price + '<br/>' +
         'Price Change: ' + priceObj.data.coin.change
 
@@ -27,27 +25,27 @@ function printPriceResults(priceObj) {
     var imgDiv = document.createElement('div');
     imgDiv.setAttribute('id', 'icon');
     imgDiv.appendChild(img);
-    gif1.appendChild(imgDiv);
 
     priceBody.append(titleEl, bodyContentEl);
 
-    coinValue.append(priceBody);
+    coinCard.append(priceBody);
+    coinCard.appendChild(imgDiv);
 }
 
 // Function for displaying GIF
-function printGifResults(gifObj) {
-    console.log(gifObj);
+// function printGifResults(gifObj) {
+//     console.log(gifObj);
 
-    var gifBody = document.createElement('div');
+//     var gifBody = document.createElement('div');
 
-    var bodyContentEl = document.createElement('div');
-    bodyContentEl.innerHTML =
-        gifObj + '<br/>';
+//     var bodyContentEl = document.createElement('div');
+//     bodyContentEl.innerHTML =
+//         gifObj + '<br/>';
 
-    gifBody.append(bodyContentEl);
-''
-    gif1.append(gifBody);
-}
+//     gifBody.append(bodyContentEl);
+// ''
+//     coinCard.append(gifBody);
+// }
 
 // options value for the fetch headers and method
 const options = {
@@ -113,7 +111,10 @@ function searchingCoin(input) {
             coinInfo = response;
             printPriceResults(coinInfo);
             var coinChange = coinInfo.data.coin.change;
-            gifDisplay(coinChange);
+            // gifDisplay(coinChange);
+            let placeholderImg = new Image(400, 400);
+            placeholderImg.src = './images/placeholder.jpg';
+            priceBody.appendChild(placeholderImg);
         })
         .catch(function (err) {
             console.error(err)
@@ -123,7 +124,7 @@ function searchingCoin(input) {
 
 // clearPageResults function is for resetting the page when a new coin is searched.
 function clearPageResults() {
-    coinValue.innerHTML = "";
+    coinCard.innerHTML = "";
     console.log("clearPageResults");
     console.log(gif1);
     gif1.innerHTML = "";
@@ -134,56 +135,56 @@ function clearPageResults() {
 //var GifAPIkey = 'S3VasUEiDf5XXAyFPT9xCzfa0unw9jt3' <---this key is already included in the GifURLrequest
 //var GifURLrequest = 'https://api.giphy.com/v1/gifs/search?api_key=S3VasUEiDf5XXAyFPT9xCzfa0unw9jt3&q=' + cryptoValue + '&limit=25&offset=0&rating=g&lang=en';
 
-function gifDisplay(cryptoValue) {
-var randomNum = Math.floor(Math.random() * (Math.floor(26) - Math.ceil(0)) + Math.ceil(0));
-    if (cryptoValue > 1) {
-        //search for Gifs labeled with the tag 'celebrate'
-        var GifURLrequest = 'https://api.giphy.com/v1/gifs/search?api_key=S3VasUEiDf5XXAyFPT9xCzfa0unw9jt3&q=celebrate&limit=25&offset=0&rating=g&lang=en';
-        fetch(GifURLrequest)
-            //return json results
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                          // set up `<div>` to hold result content
-                var gifCard = document.querySelector('#gif1');
-                gifimg = new Image(400, 400);
-                gifimg.setAttribute("id", "gif");
-                gifimg.src = data.data[randomNum].images.original.url;  //<--- this is the path to the url for the mp4 that will be displayed
-                gifCard.appendChild(gifimg);
-            })
-    } else if (cryptoValue < -1) {
-        //searhc for Gifs labeled with the tag 'oh no'
-        var GifURLrequest = 'https://api.giphy.com/v1/gifs/search?api_key=S3VasUEiDf5XXAyFPT9xCzfa0unw9jt3&q=oh+no&limit=25&offset=0&rating=g&lang=en';
-        fetch(GifURLrequest)
-            //return json results
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                          var gifCard = document.querySelector('#gif1');
-                gifimg = new Image(400, 400);
-                gifimg.setAttribute("id", "gif");
-                gifimg.src = data.data[randomNum].images.original.url;  //<--- this is the path to the url for the mp4 that will be displayed
-                gifCard.appendChild(gifimg);
-            })
-    } else {
-        //searhc for Gifs labeled with the tag 'unsure'
-        var GifURLrequest = 'https://api.giphy.com/v1/gifs/search?api_key=S3VasUEiDf5XXAyFPT9xCzfa0unw9jt3&q=unsure&limit=25&offset=0&rating=g&lang=en';
-        fetch(GifURLrequest)
-            //return json results
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                        var gifCard = document.querySelector('#gif1');
-                gifimg = new Image(400, 400);
-                gifimg.setAttribute("id", "gif");
-                gifimg.src = data.data[randomNum].images.original.url;  //<--- this is the path to the url for the mp4 that will be displayed
-                gifCard.appendChild(gifimg);
-            })
-    };
-}
+// function gifDisplay(cryptoValue) {
+// var randomNum = Math.floor(Math.random() * (Math.floor(26) - Math.ceil(0)) + Math.ceil(0));
+//     if (cryptoValue > 1) {
+//         //search for Gifs labeled with the tag 'celebrate'
+//         var GifURLrequest = 'https://api.giphy.com/v1/gifs/search?api_key=S3VasUEiDf5XXAyFPT9xCzfa0unw9jt3&q=celebrate&limit=25&offset=0&rating=g&lang=en';
+//         fetch(GifURLrequest)
+//             //return json results
+//             .then(function (response) {
+//                 return response.json();
+//             })
+//             .then(function (data) {
+//                           // set up `<div>` to hold result content
+//                 // var gifCard = document.querySelector('#gif1');
+//                 gifimg = new Image(400, 400);
+//                 gifimg.setAttribute("id", "gif");
+//                 gifimg.src = data.data[randomNum].images.original.url;  //<--- this is the path to the url for the mp4 that will be displayed
+//                 coinCard.appendChild(gifimg);
+//             })
+//     } else if (cryptoValue < -1) {
+//         //searhc for Gifs labeled with the tag 'oh no'
+//         var GifURLrequest = 'https://api.giphy.com/v1/gifs/search?api_key=S3VasUEiDf5XXAyFPT9xCzfa0unw9jt3&q=oh+no&limit=25&offset=0&rating=g&lang=en';
+//         fetch(GifURLrequest)
+//             //return json results
+//             .then(function (response) {
+//                 return response.json();
+//             })
+//             .then(function (data) {
+//                         //   var gifCard = document.querySelector('#gif1');
+//                 gifimg = new Image(400, 400);
+//                 gifimg.setAttribute("id", "gif");
+//                 gifimg.src = data.data[randomNum].images.original.url;  //<--- this is the path to the url for the mp4 that will be displayed
+//                 coinCard.appendChild(gifimg);
+//             })
+//     } else {
+//         //searhc for Gifs labeled with the tag 'unsure'
+//         var GifURLrequest = 'https://api.giphy.com/v1/gifs/search?api_key=S3VasUEiDf5XXAyFPT9xCzfa0unw9jt3&q=unsure&limit=25&offset=0&rating=g&lang=en';
+//         fetch(GifURLrequest)
+//             //return json results
+//             .then(function (response) {
+//                 return response.json();
+//             })
+//             .then(function (data) {
+//                         // var gifCard = document.querySelector('#gif1');
+//                 gifimg = new Image(400, 400);
+//                 gifimg.setAttribute("id", "gif");
+//                 gifimg.src = data.data[randomNum].images.original.url;  //<--- this is the path to the url for the mp4 that will be displayed
+//                 coinCard.appendChild(gifimg);
+//             })
+//     };
+// }
 
 var searchButton = document.querySelector(".button");
 var input = document.querySelector(".input");
@@ -223,7 +224,6 @@ coinBtns.addEventListener("click", function (event) {
     } else if (event.target === dogeBtn) {
         coinName = 'Dogecoin';
     }
-    clearPageResults()
     getUUID();
 });
 
