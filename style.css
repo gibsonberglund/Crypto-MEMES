@@ -3,6 +3,14 @@
     font-size: 3vw;
 }
 
+.hidden {
+    display: none;
+}
+
+.clearbtndiv {
+    display: flex;
+}
+
 .field {
     background-color: black;
 }
@@ -10,6 +18,10 @@
 .button {
     width: 50px;
     height: 50px;
+}
+
+#submitbtn {
+    width: 100px;
 }
 
 #dogebtn {
@@ -56,7 +68,7 @@
 }
 
 .button:hover p {
-    color: rgb(32, 221, 32)
+    color: hsl(141, 53%, 53%)
 }
 
 .control {

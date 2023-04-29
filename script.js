@@ -2,7 +2,12 @@ var coinCard = document.querySelector("#coin-card");
 var gif1 = document.querySelector("#gif1");
 var gif2 = document.querySelector("#gif2");
 
+var searchButton = document.querySelector("#submitbtn");
+var input = document.querySelector(".input");
+let searchBar = document.querySelector('#searchbar');
 
+let clearBtn = document.querySelector('#clearbtn');
+let clearBtnDiv = document.querySelector('#clearbtndiv');
 // Function for displaying price results
 function printPriceResults(priceObj) {
 
@@ -156,6 +161,8 @@ function searchingCoin(input) {
 // clearPageResults function is for resetting the page when a new coin is searched.
 function clearPageResults() {
     coinCard.innerHTML = "";
+    searchBar.textContent= "";
+    clearBtnDiv.setAttribute('class', 'hidden');
     console.log("clearPageResults");
     console.log(gif1);
     gif1.innerHTML = "";
@@ -217,8 +224,7 @@ function clearPageResults() {
 //     };
 // }
 
-var searchButton = document.querySelector(".button");
-var input = document.querySelector(".input");
+
 // this event listener takes the input value from the user when the search button is clicked
 // and converts the first letter to capital; to work with saved local storage.
 // this is also where the functions to get coin data and reset page are called.
@@ -227,11 +233,9 @@ searchButton.addEventListener("click", function (event) {
     var inputValue = input.value;
     var typedInput = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
     coinName = typedInput;
-    clearPageResults()
     getUUID();
-    // searchingCoin(typedInput);
-
-
+    searchingCoin(typedInput);
+    clearBtnDiv.setAttribute('class', 'button');
 });
 
 let coinBtns = document.querySelector('.coinbuttons');
@@ -256,8 +260,14 @@ coinBtns.addEventListener("click", function (event) {
         coinName = 'Dogecoin';
     }
     getUUID();
+    clearBtnDiv.setAttribute('class', 'clearbtndiv');
 });
 
+
+clearBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    clearPageResults();
+});
 
 // this event listener is to close the opening modal when hitting the "x" in the top right corner.
 // var modalXButton = document.querySelector("#modal-x-button");
