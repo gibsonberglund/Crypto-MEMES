@@ -2,6 +2,7 @@ var coinCard = document.querySelector("#coin-card");
 var gif1 = document.querySelector("#gif1");
 var gif2 = document.querySelector("#gif2");
 
+
 // Function for displaying price results
 function printPriceResults(priceObj) {
 
@@ -10,26 +11,59 @@ function printPriceResults(priceObj) {
     priceBody.setAttribute('id', 'price-body');
 
     var titleEl = document.createElement('h3');
+    titleEl.setAttribute('class', 'displaycointitle');
     titleEl.textContent = priceObj.data.coin.name + priceObj.data.coin.symbol;
 
+    let longPrice = priceObj.data.coin.price;
+    let shortPrice = parseFloat(longPrice).toFixed(2);
+
+
     var bodyContentEl = document.createElement('div');
-    bodyContentEl.innerHTML =
-        'Price: ' + priceObj.data.coin.price + '<br/>' +
-        'Price Change: ' + priceObj.data.coin.change
+    bodyContentEl.setAttribute('class', 'bodycontent');
+        let moneySign = document.createElement('img');
+            moneySign.setAttribute('class', 'symbol');
+            moneySign.src = './assets/images/dollar_sign.png';
+            bodyContentEl.append(moneySign);
+        let priceInfo = document.createElement('div');
+            priceInfo.setAttribute('class', 'priceinfo');
+            priceInfo.innerHTML =
+            shortPrice + '<br>';
+            bodyContentEl.append(priceInfo);
+        let arrowsSymbol = document.createElement('img');
+            arrowsSymbol.setAttribute('class', 'symbol');
+            if (priceObj.data.coin.change > 0) {
+                arrowsSymbol.src = './assets/images/up-arrow.png';
+                bodyContentEl.append(arrowsSymbol);
+            } else {
+                arrowsSymbol.src = './assets/images/down-arrow.png';
+                bodyContentEl.append(arrowsSymbol);   
+            }
+        let priceXInfo = document.createElement('div');
+            priceXInfo.setAttribute('class', 'priceinfo');
+            priceXInfo.innerHTML =
+            priceObj.data.coin.change;
+            bodyContentEl.append(priceXInfo);
 
-
-    var icon = priceObj.data.coin.iconUrl
+    var icon = priceObj.data.coin.iconUrl;
     var img = document.createElement('img');
-    img.src = icon;
+        img.setAttribute('class', 'coinicon');
+        img.src = icon;
 
     var imgDiv = document.createElement('div');
-    imgDiv.setAttribute('id', 'icon');
-    imgDiv.appendChild(img);
+        imgDiv.setAttribute('id', 'icon');
+        imgDiv.appendChild(img);
 
-    priceBody.append(titleEl, bodyContentEl);
+    let placeholderImg = new Image(400, 400);
+        placeholderImg.src = './assets/images/placeholder.jpg';
+
+        let placeholderDiv = document.createElement('div');
+        placeholderDiv.setAttribute('id', 'placeholder');
+        placeholderDiv.appendChild(placeholderImg);
+
+    priceBody.append(imgDiv, titleEl, bodyContentEl, placeholderDiv);
 
     coinCard.append(priceBody);
-    coinCard.appendChild(imgDiv);
+
 }
 
 // Function for displaying GIF
@@ -112,9 +146,6 @@ function searchingCoin(input) {
             printPriceResults(coinInfo);
             var coinChange = coinInfo.data.coin.change;
             // gifDisplay(coinChange);
-            let placeholderImg = new Image(400, 400);
-            placeholderImg.src = './images/placeholder.jpg';
-            priceBody.appendChild(placeholderImg);
         })
         .catch(function (err) {
             console.error(err)

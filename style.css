@@ -13,27 +13,27 @@
 }
 
 #dogebtn {
-    background-image: url('./images/dogecoin-logo.png');
+    background-image: url('./assets/images/dogecoin-logo.png');
     background-size: 50px 50px;
 }
 
 #bitcoinbtn {
-    background-image: url('./images/Bitcoin-logo.png');
+    background-image: url('./assets/images/Bitcoin-logo.png');
     background-size: 50px 50px;
 }
 
 #ethereumbtn {
-    background-image: url('./images/ethereum-eth-logo.png');
+    background-image: url('./assets/images/ethereum-eth-logo.png');
     background-size: 50px 50px;
 }
 
 #binancebtn {
-    background-image: url('./images/Binance-coin-bnb-logo.png');
+    background-image: url('./assets/images/Binance-coin-bnb-logo.png');
     background-size: 50px 50px;
 }
 
 #tetherbtn {
-    background-image: url('./images/tether-logo.png');
+    background-image: url('./assets/images/tether-logo.png');
     background-size: 50px 50px;
 }
 
@@ -48,12 +48,49 @@
     color: rgba(32, 221, 32, 0);
 }
 
+.displaycointitle {
+    color: gold;
+    font-size: larger;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 12%;
+}
+
 .button:hover p {
     color: rgb(32, 221, 32)
 }
 
 .control {
     margin: 1%;
+}
+
+#price-body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bodycontent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 10%;
+    max-width: 50%;
+}
+
+#placeholder {
+    margin-left: 0%;
+}
+
+.symbol {
+    height: 10%;
+}
+
+.priceinfo {
+    font-size: 24px;
+    margin-top: 3%;
+}
+
+#pricebody {
+    max-height: 50%;
 }
 
 @media screen and (min-width: 901px) {
@@ -63,9 +100,9 @@
     }
 
     #icon {
-        display: flex;
-        width: 33%;
+        width: 10%;
         margin: 2vw;
+        margin-top: 8%;
     }
 
     #coin-Data-Gif {
