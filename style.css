@@ -9,6 +9,7 @@
 
 .clearbtndiv {
     display: flex;
+    justify-content: center;
 }
 
 .field {
@@ -22,6 +23,13 @@
 
 #submitbtn {
     width: 100px;
+}
+
+.clearbtn {
+    background-color: black;
+    color: white;
+    padding: 1%;
+    border-radius: 5%;
 }
 
 #dogebtn {
